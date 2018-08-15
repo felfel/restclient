@@ -1,6 +1,6 @@
 {
   "name": "@megues/rest-client",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "https://github.com/marcusegues/restclient.git",
@@ -21,8 +21,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
+    "prepublishOnly": "npm test",
     "version": "npm run format && git add -A src"
   }
 }
