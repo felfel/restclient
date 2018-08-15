@@ -1,0 +1,14 @@
+{
+  "name": "@megues/restclient",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "repository": "https://github.com/marcusegues/restclient.git",
+  "author": "megues <marcus@felfel.ch>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.0.1"
+  },
+  "scripts": {
+    "build" : "tsc"
+  }
+}
