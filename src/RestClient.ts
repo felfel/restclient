@@ -1,7 +1,7 @@
-import { ApiResponse } from "./ApiResponse";
-import { ApiResult } from "./ApiResult";
-import { JsonProcessor } from "./JsonProcessor";
-import { IAuthClient } from "./AuthClient";
+import { ApiResponse } from './ApiResponse';
+import { ApiResult } from './ApiResult';
+import { JsonProcessor } from './JsonProcessor';
+import { IAuthClient } from './AuthClient';
 
 export class RestClient {
   baseUri: string;
@@ -10,13 +10,13 @@ export class RestClient {
   inboundProcessors: Array<JsonProcessor> = [];
   outboundProcessors: Array<JsonProcessor> = [];
 
-  constructor(baseUri: string = "", authClient: IAuthClient = undefined) {
+  constructor(baseUri: string = '', authClient: IAuthClient = undefined) {
     this.baseUri = baseUri;
     this.authClient = authClient;
   }
 
   get(uri): Promise<ApiResponse> {
-    return this.invoke("GET", uri, null);
+    return this.invoke('GET', uri, null);
   }
 
   async getAs<T>(uri): Promise<ApiResult<T>> {
@@ -25,7 +25,7 @@ export class RestClient {
   }
 
   post(uri, data?): Promise<ApiResponse> {
-    return this.invoke("POST", uri, data);
+    return this.invoke('POST', uri, data);
   }
 
   async postAs<T>(uri, data?): Promise<ApiResult<T>> {
@@ -34,7 +34,7 @@ export class RestClient {
   }
 
   put(uri, data?): Promise<ApiResponse> {
-    return this.invoke("PUT", uri, data);
+    return this.invoke('PUT', uri, data);
   }
 
   async putAs<T>(uri, data?): Promise<ApiResult<T>> {
@@ -43,7 +43,7 @@ export class RestClient {
   }
 
   delete(uri, data?): Promise<ApiResponse> {
-    return this.invoke("DELETE", uri, data);
+    return this.invoke('DELETE', uri, data);
   }
 
   async deleteAs<T>(uri, data?): Promise<ApiResult<T>> {
@@ -70,14 +70,14 @@ export class RestClient {
     try {
       let body = null;
       headers = headers || new Headers();
-      headers.append("Accept", "application/json");
+      headers.append('Accept', 'application/json');
 
       if (this.authClient) {
         await this.authClient.setAuthHeader(headers);
       }
 
       if (data) {
-        headers.append("Content-Type", "application/json");
+        headers.append('Content-Type', 'application/json');
 
         let jsonObj = data;
         this.outboundProcessors.forEach(
@@ -89,7 +89,7 @@ export class RestClient {
       const request = {
         method: method,
         headers: headers,
-        body: body
+        body: body,
       };
 
       //construct URI with base URI

@@ -1,5 +1,5 @@
-import { camelizeKeys, decamelizeKeys } from "humps";
-import parse from "date-fns/parse";
+import { camelizeKeys, decamelizeKeys } from 'humps';
+import parse from 'date-fns/parse';
 
 export interface JsonProcessor {
   processJson(json: object): object;
@@ -49,8 +49,8 @@ export class DateConventionProcessor implements JsonProcessor {
       }
 
       //if it's a string, check for convention
-      if (typeof value === "string") {
-        if (key.toLowerCase().indexOf("date") > -1) {
+      if (typeof value === 'string') {
+        if (key.toLowerCase().indexOf('date') > -1) {
           //check if it's a valid ISO-8601 timestamp
           const result: boolean = self.iso8601.test(value);
           if (result) {
@@ -69,7 +69,7 @@ export class DateConventionProcessor implements JsonProcessor {
   }
 
   private static isArray(obj): boolean {
-    return toString.call(obj) == "[object Array]";
+    return Object.toString.call(obj) == '[object Array]';
   }
 
   private static isObject(obj): boolean {

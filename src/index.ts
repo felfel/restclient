@@ -1,4 +1,4 @@
-import { RestClient } from "./RestClient";
+import { RestClient } from './RestClient';
 
 export const Greeter = (name: string) => `Hello ${name}`;
 

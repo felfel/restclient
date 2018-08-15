@@ -1,4 +1,4 @@
-import { ApiResponse } from "./ApiResponse";
+import { ApiResponse } from './ApiResponse';
 
 /**
  * Extends an API response with a result that is automatically
