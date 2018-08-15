@@ -1,7 +1,7 @@
 export class ApiResponse {
-  private response: Response;
-  private error: any;
-  private attempts: number;
+  public response: Response;
+  public error: any;
+  public attempts: number;
 
   get status(): number {
     return this.response ? this.response.status : -1;
@@ -32,7 +32,7 @@ export class ApiResponse {
     }
 
     const res = this.response;
-    const statusText = res.statusText ? res.statusText : 'HTTP Error';
+    const statusText = res.statusText ? res.statusText : "HTTP Error";
     return `${statusText} (${this.status}).`;
   }
 }
