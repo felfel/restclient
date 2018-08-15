@@ -4,7 +4,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "https://github.com/marcusegues/restclient.git",
-  "author": "megues <marcus@felfel.ch>",
+  "author": "",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^23.3.1",
