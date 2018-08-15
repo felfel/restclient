@@ -1,14 +1,14 @@
 export class ApiResponse {
-  response: Response;
-  error: any;
-  attempts: number;
+  private response: Response;
+  private error: any;
+  private attempts: number;
 
   get status(): number {
     return this.response ? this.response.status : -1;
   }
 
   get success(): boolean {
-    //check for successful response plus no errors (could happen during JSON access/parsing)
+    // check for successful response plus no errors (could happen during JSON access/parsing)
     return this.response && this.response.ok && this.error === undefined;
   }
 
@@ -26,7 +26,7 @@ export class ApiResponse {
     this.attempts = attempts;
   }
 
-  getErrorMessage() {
+  public getErrorMessage() {
     if (this.error) {
       return `Service access error: ${this.error}`;
     }

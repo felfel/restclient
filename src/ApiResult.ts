@@ -5,7 +5,7 @@ import { ApiResponse } from './ApiResponse';
  * built from returned JSON.
  */
 export class ApiResult<T> extends ApiResponse {
-  value: T;
+  public value: T;
 
   constructor(val: T, res: Response, error, attempts: number) {
     super(res, error, attempts);

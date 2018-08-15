@@ -1,14 +1,14 @@
 import { ApiResponse } from './ApiResponse';
 import { ApiResult } from './ApiResult';
-import { JsonProcessor } from './JsonProcessor';
+import { IJsonProcessor } from './IJsonProcessor';
 import { IAuthClient } from './AuthClient';
 
 export class RestClient {
   baseUri: string;
   authClient: IAuthClient;
 
-  inboundProcessors: Array<JsonProcessor> = [];
-  outboundProcessors: Array<JsonProcessor> = [];
+  inboundProcessors: Array<IJsonProcessor> = [];
+  outboundProcessors: Array<IJsonProcessor> = [];
 
   constructor(baseUri: string = '', authClient: IAuthClient = undefined) {
     this.baseUri = baseUri;
