@@ -10,7 +10,7 @@ export class RestClient {
   public inboundProcessors: IJsonProcessor[] = [];
   public outboundProcessors: IJsonProcessor[] = [];
 
-  constructor(baseUri: string = '', authClient: IAuthClient) {
+  constructor(baseUri: string = '', authClient?: IAuthClient) {
     this.baseUri = baseUri;
     this.authClient = authClient;
   }
