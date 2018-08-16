@@ -32,8 +32,7 @@ export class DateConventionProcessor implements IJsonProcessor {
   private static isObject(obj): boolean {
     return obj === Object(obj);
   }
-
-  // private iso8601 = /^\d{4}(-\d\d(-\d\d(T\d\d:\d\d(:\d\d)?(\.\d+)?(([+-]\d\d:\d\d)|Z)?)?)?)?$/i;
+  private iso8601 = /^\d{4}(-\d\d(-\d\d(T\d\d:\d\d(:\d\d)?(\.\d+)?(([+-]\d\d:\d\d)|Z)?)?)?)?$/i;
 
   public processJson(json: object): object {
     this.parse(json);
@@ -46,7 +45,7 @@ export class DateConventionProcessor implements IJsonProcessor {
       return;
     }
 
-    Object.keys(json).forEach(function(this: any, key) {
+    Object.keys(json).forEach(key => {
       const value: any = json[key];
 
       // browse arrays
