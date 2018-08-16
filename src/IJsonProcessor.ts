@@ -1,5 +1,5 @@
-import parse from "date-fns/parse";
-import { camelizeKeys, decamelizeKeys } from "humps";
+import parse from 'date-fns/parse';
+import { camelizeKeys, decamelizeKeys } from 'humps';
 
 export interface IJsonProcessor {
   // tslint:disable-next-line
@@ -26,7 +26,7 @@ export class CamelToSnakeProcessor implements IJsonProcessor {
  */
 export class DateConventionProcessor implements IJsonProcessor {
   private static isArray(obj): boolean {
-    return Object.toString.call(obj) === "[object Array]";
+    return Object.toString.call(obj) === '[object Array]';
   }
 
   private static isObject(obj): boolean {
@@ -46,7 +46,7 @@ export class DateConventionProcessor implements IJsonProcessor {
       return;
     }
 
-    Object.keys(json).forEach(function(key) {
+    Object.keys(json).forEach(key => {
       const value: any = json[key];
 
       // browse arrays
@@ -58,8 +58,8 @@ export class DateConventionProcessor implements IJsonProcessor {
       }
 
       // if it's a string, check for convention
-      if (typeof value === "string") {
-        if (key.toLowerCase().indexOf("date") > -1) {
+      if (typeof value === 'string') {
+        if (key.toLowerCase().indexOf('date') > -1) {
           // check if it's a valid ISO-8601 timestamp
           const result: boolean = this.iso8601.test(value);
           if (result) {

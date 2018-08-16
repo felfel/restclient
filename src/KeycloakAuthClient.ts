@@ -1,5 +1,5 @@
-import { ApiResponse } from "./ApiResponse";
-import { IAuthClient } from "./AuthClient";
+import { ApiResponse } from './ApiResponse';
+import { IAuthClient } from './AuthClient';
 
 /**
  * Provides token-based authentication with Keycloak.
@@ -29,7 +29,7 @@ export class KeycloakAuthClient implements IAuthClient {
       const token = json.access_token;
       if (!token) {
         const error = new Error(
-          "Token fetch error - no access_token found in resolved JSON: " +
+          'Token fetch error - no access_token found in resolved JSON: ' +
             JSON.stringify(json)
         );
         reject(error);
@@ -41,7 +41,7 @@ export class KeycloakAuthClient implements IAuthClient {
       return json.access_token;
     } else {
       const error = new Error(
-        "Token fetch error: " + response.getErrorMessage()
+        'Token fetch error: ' + response.getErrorMessage()
       );
       reject(error);
       throw error;
@@ -53,13 +53,13 @@ export class KeycloakAuthClient implements IAuthClient {
     // if the promise fails, this will fail
     const token: string = await this.token;
     if (token) {
-      headers.append("Authorization", "Bearer " + token);
+      headers.append('Authorization', 'Bearer ' + token);
     }
   }
 
   public async getToken(): Promise<ApiResponse> {
     const headers = {
-      "Content-type": "application/x-www-form-urlencoded"
+      'Content-type': 'application/x-www-form-urlencoded',
     };
 
     const body = `grant_type=client_credentials&client_id=${
@@ -69,7 +69,7 @@ export class KeycloakAuthClient implements IAuthClient {
     const request = {
       headers,
       body,
-      method: "POST"
+      method: 'POST',
     };
 
     // send request
