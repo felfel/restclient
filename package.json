@@ -1,6 +1,6 @@
 {
-  "name": "@megues/rest-client",
-  "version": "0.0.8",
+  "name": "@felfel/restclient",
+  "version": "0.0.9",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "https://github.com/felfel/restclient",
@@ -18,7 +18,7 @@
   "scripts": {
     "test": "jest --config jestconfig.json",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "prettier": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
