@@ -1,7 +1,7 @@
-import { ApiResponse } from "./ApiResponse";
-import { ApiResult } from "./ApiResult";
-import { IAuthClient } from "./AuthClient";
-import { IJsonProcessor } from "./IJsonProcessor";
+import { ApiResponse } from './ApiResponse';
+import { ApiResult } from './ApiResult';
+import { IAuthClient } from './AuthClient';
+import { IJsonProcessor } from './IJsonProcessor';
 
 export class RestClient {
   public baseUri: string;
@@ -10,13 +10,13 @@ export class RestClient {
   public inboundProcessors: IJsonProcessor[] = [];
   public outboundProcessors: IJsonProcessor[] = [];
 
-  constructor(baseUri: string = "", authClient?: IAuthClient) {
+  constructor(baseUri: string = '', authClient?: IAuthClient) {
     this.baseUri = baseUri;
     this.authClient = authClient;
   }
 
   public get(uri): Promise<ApiResponse> {
-    return this.invoke("GET", uri, null);
+    return this.invoke('GET', uri, null);
   }
 
   public async getAs<T>(uri): Promise<ApiResult<T>> {
@@ -25,7 +25,7 @@ export class RestClient {
   }
 
   public post(uri, data?): Promise<ApiResponse> {
-    return this.invoke("POST", uri, data);
+    return this.invoke('POST', uri, data);
   }
 
   public async postAs<T>(uri, data?): Promise<ApiResult<T>> {
@@ -34,7 +34,7 @@ export class RestClient {
   }
 
   public put(uri, data?): Promise<ApiResponse> {
-    return this.invoke("PUT", uri, data);
+    return this.invoke('PUT', uri, data);
   }
 
   public async putAs<T>(uri, data?): Promise<ApiResult<T>> {
@@ -43,7 +43,7 @@ export class RestClient {
   }
 
   public delete(uri, data?): Promise<ApiResponse> {
-    return this.invoke("DELETE", uri, data);
+    return this.invoke('DELETE', uri, data);
   }
 
   public async deleteAs<T>(uri, data?): Promise<ApiResult<T>> {
@@ -71,14 +71,14 @@ export class RestClient {
       let body = null;
 
       const hs = headers || new Headers();
-      hs.append("Accept", "application/json");
+      hs.append('Accept', 'application/json');
 
       if (this.authClient) {
         await this.authClient.setAuthHeader(hs);
       }
 
       if (data) {
-        hs.append("Content-Type", "application/json");
+        hs.append('Content-Type', 'application/json');
 
         let jsonObj = data;
         this.outboundProcessors.forEach(
@@ -90,7 +90,7 @@ export class RestClient {
       const request = {
         body,
         method,
-        headers: hs
+        headers: hs,
       };
 
       // construct URI with base URI

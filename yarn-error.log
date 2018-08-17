@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/10.8.0/bin/node /usr/local/Cellar/yarn/1.9.4/libexec/bin/yarn.js publish
+  /usr/local/Cellar/node/10.8.0/bin/node /usr/local/Cellar/yarn/1.9.4/libexec/bin/yarn.js publish --access=public
 
 PATH: 
   /Users/marcus/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/marcus/Library/Android/sdk/tools:/Users/marcus/Library/Android/sdk/tools/bin:/Users/marcus/Library/Android/sdk/platform-tools
@@ -14,26 +14,21 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: canceled
-      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.9.4/libexec/lib/cli.js:126002:13)
-      at Interface.emit (events.js:182:13)
-      at Interface._ttyWrite (readline.js:783:16)
-      at ReadStream.onkeypress (readline.js:168:10)
-      at ReadStream.emit (events.js:182:13)
-      at emitKeys (internal/readline.js:422:14)
-      at emitKeys.next (<anonymous>)
-      at ReadStream.onData (readline.js:1022:36)
-      at ReadStream.emit (events.js:182:13)
-      at addChunk (_stream_readable.js:283:12)
+  SyntaxError: /Users/marcus/projects/restclient/package.json: Unexpected token } in JSON at position 784
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.9.4/libexec/lib/cli.js:1130:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.9.4/libexec/lib/cli.js:92:30)
+      at /usr/local/Cellar/yarn/1.9.4/libexec/lib/cli.js:103:13
 
 npm manifest: 
   {
-    "name": "@megues/rest-client",
-    "version": "0.0.5",
+    "name": "@felfel/restclient",
+    "version": "0.2.0",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
-    "repository": "https://github.com/marcusegues/restclient.git",
-    "author": "megues <marcus@felfel.ch>",
+    "repository": "https://github.com/felfel/restclient",
+    "author": "",
     "license": "MIT",
     "devDependencies": {
       "@types/jest": "^23.3.1",
@@ -53,7 +48,6 @@ npm manifest:
       "prepublishOnly": "npm test && npm run lint",
       "preversion": "npm run lint",
       "version": "npm run format && git add -A src",
-      "postversion": "git push && git push --tags"
     },
     "dependencies": {
       "@types/react-native": "^0.56.8",
