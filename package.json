@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@types/react-native": "^0.56.8",
+    "humps": "^2.0.1",
     "tslint-config-airbnb": "^5.9.2"
   }
 }
