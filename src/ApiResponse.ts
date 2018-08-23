@@ -32,7 +32,7 @@ export class ApiResponse {
     }
 
     const res = this.response;
-    const statusText = res.statusText ? res.statusText : 'HTTP Error';
+    const statusText = res.statusText ? res.statusText : "HTTP Error";
     return `${statusText} (${this.status}).`;
   }
 }
