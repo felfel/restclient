@@ -59,7 +59,7 @@ export class KeycloakAuthClient implements IAuthClient {
 
   public async getToken(): Promise<ApiResponse> {
     const headers = {
-      'Content-type': 'application/x-www-form-urlencoded',
+      'Content-type': 'application/x-www-form-urlencoded'
     };
 
     const body = `grant_type=client_credentials&client_id=${
@@ -69,7 +69,7 @@ export class KeycloakAuthClient implements IAuthClient {
     const request = {
       headers,
       body,
-      method: 'POST',
+      method: 'POST'
     };
 
     // send request

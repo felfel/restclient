@@ -5,7 +5,7 @@ import {
   CamelToSnakeProcessor,
   DateConventionProcessor,
   IJsonProcessor,
-  SnakeToCamelProcessor,
+  SnakeToCamelProcessor
 } from './IJsonProcessor';
 import { KeycloakAuthClient } from './KeycloakAuthClient';
 import { RestClient } from './RestClient';
@@ -19,5 +19,5 @@ export {
   SnakeToCamelProcessor,
   CamelToSnakeProcessor,
   DateConventionProcessor,
-  KeycloakAuthClient,
+  KeycloakAuthClient
 };
