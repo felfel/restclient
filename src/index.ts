@@ -1,14 +1,14 @@
-import { ApiResponse } from "./ApiResponse";
-import { ApiResult } from "./ApiResult";
-import { IAuthClient } from "./AuthClient";
+import { ApiResponse } from './ApiResponse';
+import { ApiResult } from './ApiResult';
+import { IAuthClient } from './AuthClient';
 import {
   CamelToSnakeProcessor,
   DateConventionProcessor,
   IJsonProcessor,
-  SnakeToCamelProcessor
-} from "./IJsonProcessor";
-import { KeycloakAuthClient } from "./KeycloakAuthClient";
-import { RestClient } from "./RestClient";
+  SnakeToCamelProcessor,
+} from './IJsonProcessor';
+import { KeycloakAuthClient } from './KeycloakAuthClient';
+import { RestClient } from './RestClient';
 
 export {
   RestClient,
@@ -19,5 +19,5 @@ export {
   SnakeToCamelProcessor,
   CamelToSnakeProcessor,
   DateConventionProcessor,
-  KeycloakAuthClient
+  KeycloakAuthClient,
 };
