@@ -90,7 +90,7 @@ export class RestClient {
       const request = {
         body,
         method,
-        headers: hs
+        headers: hs,
       };
 
       // construct URI with base URI

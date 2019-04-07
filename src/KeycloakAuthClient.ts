@@ -10,7 +10,8 @@ export class KeycloakAuthClient implements IAuthClient {
   constructor(
     private authEndpointUri: string,
     private clientId: string,
-    private secret: string
+    private secret: string,
+    private username?: string
   ) {}
 
   public async refreshToken(): Promise<void> {
@@ -59,17 +60,23 @@ export class KeycloakAuthClient implements IAuthClient {
 
   public async getToken(): Promise<ApiResponse> {
     const headers = {
-      'Content-type': 'application/x-www-form-urlencoded'
+      'Content-type': 'application/x-www-form-urlencoded',
     };
-
-    const body = `grant_type=client_credentials&client_id=${
-      this.clientId
-    }&client_secret=${this.secret}`;
+    let body: string;
+    if (this.username) {
+      body = `grant_type=password&client_id=${this.clientId}&username=${
+        this.username
+      }&password=${this.secret}`;
+    } else {
+      body = `grant_type=client_credentials&client_id=${
+        this.clientId
+      }&client_secret=${this.secret}`;
+    }
 
     const request = {
       headers,
       body,
-      method: 'POST'
+      method: 'POST',
     };
 
     // send request
