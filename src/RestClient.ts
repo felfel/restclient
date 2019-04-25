@@ -15,54 +15,93 @@ export class RestClient {
     this.authClient = authClient;
   }
 
-  public get(uri): Promise<ApiResponse> {
-    return this.invoke('GET', uri, null);
+  public get(
+    uri,
+    skipOutboundProcessors: boolean = false
+  ): Promise<ApiResponse> {
+    return this.invoke('GET', uri, skipOutboundProcessors, null);
   }
 
-  public async getAs<T>(uri): Promise<ApiResult<T>> {
-    const response = await this.get(uri);
+  public async getAs<T>(
+    uri,
+    skipOutboundProcessors: boolean = false
+  ): Promise<ApiResult<T>> {
+    const response = await this.get(uri, skipOutboundProcessors);
     return this.parseResult<T>(response);
   }
 
-  public post(uri, data?): Promise<ApiResponse> {
-    return this.invoke('POST', uri, data);
+  public post(
+    uri,
+    data?,
+    skipOutboundProcessors: boolean = false
+  ): Promise<ApiResponse> {
+    return this.invoke('POST', uri, skipOutboundProcessors, data);
   }
 
-  public async postAs<T>(uri, data?): Promise<ApiResult<T>> {
-    const response = await this.post(uri, data);
+  public async postAs<T>(
+    uri,
+    data?,
+    skipOutboundProcessors: boolean = false
+  ): Promise<ApiResult<T>> {
+    const response = await this.post(uri, data, skipOutboundProcessors);
     return this.parseResult<T>(response);
   }
 
-  public put(uri, data?): Promise<ApiResponse> {
-    return this.invoke('PUT', uri, data);
+  public put(
+    uri,
+    data?,
+    skipOutboundProcessors: boolean = false
+  ): Promise<ApiResponse> {
+    return this.invoke('PUT', uri, skipOutboundProcessors, data);
   }
 
-  public async putAs<T>(uri, data?): Promise<ApiResult<T>> {
-    const response = await this.put(uri, data);
+  public async putAs<T>(
+    uri,
+    data?,
+    skipOutboundProcessors: boolean = false
+  ): Promise<ApiResult<T>> {
+    const response = await this.put(uri, data, skipOutboundProcessors);
     return this.parseResult<T>(response);
   }
 
-  public delete(uri, data?): Promise<ApiResponse> {
-    return this.invoke('DELETE', uri, data);
+  public delete(
+    uri,
+    data?,
+    skipOutboundProcessors: boolean = false
+  ): Promise<ApiResponse> {
+    return this.invoke('DELETE', uri, skipOutboundProcessors, data);
   }
 
-  public async deleteAs<T>(uri, data?): Promise<ApiResult<T>> {
-    const response = await this.delete(uri, data);
+  public async deleteAs<T>(
+    uri,
+    data?,
+    skipOutboundProcessors: boolean = false
+  ): Promise<ApiResult<T>> {
+    const response = await this.delete(uri, data, skipOutboundProcessors);
     return this.parseResult<T>(response);
   }
 
   public invoke(
     method: string,
     uri: string,
+    skipOutboundProcessors: boolean = false,
     data?: any,
     headers?: Headers
   ): Promise<ApiResponse> {
-    return this.invokeWithRetries(method, uri, data, 0, headers);
+    return this.invokeWithRetries(
+      method,
+      uri,
+      skipOutboundProcessors,
+      data,
+      0,
+      headers
+    );
   }
 
   private async invokeWithRetries(
     method,
     uri,
+    skipOutBoundProcessors: boolean = false,
     data,
     retryCounter: number,
     headers?: Headers
@@ -81,9 +120,11 @@ export class RestClient {
         hs.append('Content-Type', 'application/json');
 
         let jsonObj = data;
-        this.outboundProcessors.forEach(
-          p => (jsonObj = p.processJson(jsonObj))
-        );
+        if (!skipOutBoundProcessors) {
+          this.outboundProcessors.forEach(
+            p => (jsonObj = p.processJson(jsonObj))
+          );
+        }
         body = JSON.stringify(jsonObj);
       }
 
@@ -121,7 +162,13 @@ export class RestClient {
         await new Promise(r => setTimeout(r, delay));
       }
 
-      return await this.invokeWithRetries(method, uri, data, retryCounter + 1);
+      return await this.invokeWithRetries(
+        method,
+        uri,
+        skipOutBoundProcessors,
+        data,
+        retryCounter + 1
+      );
     } catch (error) {
       // we didn't even manage to get a response
       return new ApiResponse(undefined, error, retryCounter);
